@@ -1,0 +1,203 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <variables>
+    <variable type="Global" id="N]ywn0nE8c#@c!(!RH^]">countdownTime</variable>
+    <variable type="Global" id="I8lmzo1{:SJ=T8,2:ZWr">countdownCounter</variable>
+  </variables>
+  <block type="modBlock" deletable="false" x="10" y="10">
+    <statement name="RULES">
+      <block type="ruleBlock">
+        <mutation isOnGoingEvent="false"></mutation>
+        <field name="NAME">initialization</field>
+        <field name="EVENTTYPE">OnGameModeStarted</field>
+        <statement name="ACTIONS">
+          <block type="SetVariable">
+            <value name="VALUE-0">
+              <block type="variableReferenceBlock">
+                <mutation isObjectVar="false"></mutation>
+                <field name="OBJECTTYPE">Global</field>
+                <field name="VAR" id="N]ywn0nE8c#@c!(!RH^]" variabletype="Global">countdownTime</field>
+              </block>
+            </value>
+            <value name="VALUE-1">
+              <block type="Number">
+                <field name="NUM">10</field>
+              </block>
+            </value>
+            <next>
+              <block type="SetVariable">
+                <value name="VALUE-0">
+                  <block type="variableReferenceBlock">
+                    <mutation isObjectVar="false"></mutation>
+                    <field name="OBJECTTYPE">Global</field>
+                    <field name="VAR" id="I8lmzo1{:SJ=T8,2:ZWr" variabletype="Global">countdownCounter</field>
+                  </block>
+                </value>
+                <value name="VALUE-1">
+                  <block type="GetVariable">
+                    <value name="VALUE-0">
+                      <block type="variableReferenceBlock">
+                        <mutation isObjectVar="false"></mutation>
+                        <field name="OBJECTTYPE">Global</field>
+                        <field name="VAR" id="N]ywn0nE8c#@c!(!RH^]" variabletype="Global">countdownTime</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </statement>
+        <next>
+          <block type="ruleBlock">
+            <mutation isOnGoingEvent="true"></mutation>
+            <field name="NAME">startCountdown</field>
+            <field name="EVENTTYPE">Ongoing</field>
+            <field name="OBJECTTYPE">Global</field>
+            <statement name="CONDITIONS">
+              <block type="conditionBlock">
+                <value name="CONDITION">
+                  <block type="GreaterThan">
+                    <value name="VALUE-0">
+                      <block type="GetGameModeTimeElapsed"></block>
+                    </value>
+                    <value name="VALUE-1">
+                      <block type="Number">
+                        <field name="NUM">5</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+              </block>
+            </statement>
+            <statement name="ACTIONS">
+              <block type="ChaseVariableAtRate">
+                <value name="VALUE-0">
+                  <block type="variableReferenceBlock">
+                    <mutation isObjectVar="false"></mutation>
+                    <field name="OBJECTTYPE">Global</field>
+                    <field name="VAR" id="I8lmzo1{:SJ=T8,2:ZWr" variabletype="Global">countdownCounter</field>
+                  </block>
+                </value>
+                <value name="VALUE-1">
+                  <block type="Number">
+                    <field name="NUM">0</field>
+                  </block>
+                </value>
+                <value name="VALUE-2">
+                  <block type="Number">
+                    <field name="NUM">-1</field>
+                  </block>
+                </value>
+              </block>
+            </statement>
+            <next>
+              <block type="ruleBlock">
+                <mutation isOnGoingEvent="true"></mutation>
+                <field name="NAME">onCountdownEnd</field>
+                <field name="EVENTTYPE">Ongoing</field>
+                <field name="OBJECTTYPE">Global</field>
+                <statement name="CONDITIONS">
+                  <block type="conditionBlock">
+                    <value name="CONDITION">
+                      <block type="GreaterThan">
+                        <value name="VALUE-0">
+                          <block type="GetGameModeTimeElapsed"></block>
+                        </value>
+                        <value name="VALUE-1">
+                          <block type="Number">
+                            <field name="NUM">0</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="conditionBlock">
+                        <value name="CONDITION">
+                          <block type="Equals">
+                            <value name="VALUE-0">
+                              <block type="GetVariable">
+                                <value name="VALUE-0">
+                                  <block type="variableReferenceBlock">
+                                    <mutation isObjectVar="false"></mutation>
+                                    <field name="OBJECTTYPE">Global</field>
+                                    <field name="VAR" id="I8lmzo1{:SJ=T8,2:ZWr" variabletype="Global">countdownCounter</field>
+                                  </block>
+                                </value>
+                              </block>
+                            </value>
+                            <value name="VALUE-1">
+                              <block type="Number">
+                                <field name="NUM">0</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                      </block>
+                    </next>
+                  </block>
+                </statement>
+                <statement name="ACTIONS">
+                  <block type="DisplayCustomNotificationMessage">
+                    <value name="VALUE-0">
+                      <block type="Message">
+                        <value name="VALUE-0">
+                          <block type="Text">
+                            <field name="TEXT">BOOM!</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <value name="VALUE-1">
+                      <block type="CustomMessagesItem">
+                        <field name="VALUE-0">CustomMessages</field>
+                        <field name="VALUE-1">HeaderText</field>
+                      </block>
+                    </value>
+                    <value name="VALUE-2">
+                      <block type="Number">
+                        <field name="NUM">2</field>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="StopChasingVariable">
+                        <value name="VALUE-0">
+                          <block type="variableReferenceBlock">
+                            <mutation isObjectVar="false"></mutation>
+                            <field name="OBJECTTYPE">Global</field>
+                            <field name="VAR" id="I8lmzo1{:SJ=T8,2:ZWr" variabletype="Global">countdownCounter</field>
+                          </block>
+                        </value>
+                        <next>
+                          <block type="SetVariable">
+                            <value name="VALUE-0">
+                              <block type="variableReferenceBlock">
+                                <mutation isObjectVar="false"></mutation>
+                                <field name="OBJECTTYPE">Global</field>
+                                <field name="VAR" id="I8lmzo1{:SJ=T8,2:ZWr" variabletype="Global">countdownCounter</field>
+                              </block>
+                            </value>
+                            <value name="VALUE-1">
+                              <block type="GetVariable">
+                                <value name="VALUE-0">
+                                  <block type="variableReferenceBlock">
+                                    <mutation isObjectVar="false"></mutation>
+                                    <field name="OBJECTTYPE">Global</field>
+                                    <field name="VAR" id="N]ywn0nE8c#@c!(!RH^]" variabletype="Global">countdownTime</field>
+                                  </block>
+                                </value>
+                              </block>
+                            </value>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </statement>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+</xml>
